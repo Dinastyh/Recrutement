@@ -1,0 +1,13 @@
+option(
+    'unit',
+    type: 'boolean',
+    value: false,
+    description: 'build unit tests'
+)
+
+option(
+    'docs',
+    type: 'boolean',
+    value: false,
+    description: 'generate documentation'
+)
