@@ -41,7 +41,7 @@ endif
 #######################################
 
 # LIBRARY
-lib = library('switch', lib_src, include_directories: include)
+lib = library('', lib_src, include_directories: include)
 
 # BINNARY
 bin = executable('myvswitch',

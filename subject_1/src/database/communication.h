@@ -2,6 +2,7 @@
 #define COMMUNICATION_H
 
 #include "info_connection.h"
+#include "stdarg.h"
 
 //@brief 
 // Connect to MariaDB with info from config file

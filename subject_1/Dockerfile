@@ -2,7 +2,7 @@ FROM quay.io/centos/centos:stream
 
 RUN dnf upgrade --setopt=install_weak_deps=False -y
 
-RUN dnf install -y make gcc binutils autoconf automake zip
+RUN dnf install -y make gcc binutils autoconf automake zip meson
 
 ADD wolfssl/wolfssl-5.2.0.zip /build/wolfssl/wolfssl-5.2.0.zip
 
@@ -22,3 +22,10 @@ RUN useradd -m cen
 
 WORKDIR /home/cen/project
 USER cen
+
+ADD src/ src/
+ADD meson.build meson.build
+ADD meson_option.txt
+ADD tests/ tests/
+RUN messon setup build
+RUN cd build && meson compile
