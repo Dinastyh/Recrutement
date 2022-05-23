@@ -17,5 +17,6 @@ struct info_connection {
 
 struct info_connection *info_connection_new(char *host, char *user, char *password, char *default_database, size_t port);
 void info_connection_free(struct info_connection *info_connection);
+struct info_connection *get_from_config_file(void);
 
 #endif

@@ -1,0 +1,6 @@
+[DataBase]
+host = localhost
+user = db_user
+password = db_user_password
+default_database = db_default
+port = 3306
