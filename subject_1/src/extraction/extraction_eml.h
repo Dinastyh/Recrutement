@@ -7,5 +7,4 @@ struct extracted_data
     char **data;
 }
 
-
 #endif

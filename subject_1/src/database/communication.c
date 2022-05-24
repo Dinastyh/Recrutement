@@ -35,10 +35,6 @@ MYSQL_STMT* prepare_statement(MYSQL *connection, char *query)
 	return statement;
 }
 
-void execute_statement(MYSQL_STMT *statement)
-{
-}
-
 void exec_statement(MYSQL_STMT *statement, size_t nb_param, ...)
 {
 	MYSQL_BIND *bind = calloc(nb_param, sizeof(MYSQL_BIND));
@@ -52,15 +48,12 @@ void exec_statement(MYSQL_STMT *statement, size_t nb_param, ...)
 	}
 	va_end(parameters);
 
-	
-	
-	if (mysql_stmt_execute(statement))
-		errx(3, "Fail to execute the statement %s", mysql_error(connection));
+	if (mysql_stmt_bind_param(statement, bind))
+		errx(3, "Fail to bind the parameters %s", mysql_error(connection));
 
 	if (mysql_stmt_execute(statement))
 		errx(3, "Fail to execute the statement %s", mysql_error(connection));
-	
 
+	free(bind);
 }
-
 
