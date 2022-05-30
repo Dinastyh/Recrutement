@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "info_connection.h"
+#include "communication/info_connection.h"
 
 int main(int argc, char **argv)
 {
@@ -19,4 +19,7 @@ int main(int argc, char **argv)
     }
 
     struct info_connection *info_connection = get_from_config_file();
+	
+	MYSQL *connection = connect_to_db(info_connection);
+
 }
