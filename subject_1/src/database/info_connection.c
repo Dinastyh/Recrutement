@@ -84,11 +84,11 @@ struct info_connection *get_from_config_file(void)
 	errx(3, "Missing port field in config file");
     }
 
-    struct info_connection *info = info_connection_new(host, user, password, default_database, port);
+    struct info_connection *info = info_connection_new(host.u.s, user.u.s, password.u.s, default_database.u.s, port.u.i);
     toml_free(conf);
     fclose(config_file);
 
-    return info_connection;
+    return info;
 }
 
 static void gen_default_conf(void)
@@ -98,12 +98,7 @@ static void gen_default_conf(void)
     if (!file)
 	errx(2, "Fail to generate default config in config.toml\n");
 
-    char default_config[] = "[DataBase]\n
-	host = localhost\n
-	user = db_user\n
-	password = db_user_password\n
-	default_database = db_default\n
-	port = 3306\n";
+    char default_config[] = "[DataBase]\nhost = localhost\nuser = db_user\npassword = db_user_password\ndefault_database = db_default\nport = 3306\n";
 
     size_t size = fwrite(default_config, 1, sizeof(default_config), file);
     if (size != sizeof(default_config))

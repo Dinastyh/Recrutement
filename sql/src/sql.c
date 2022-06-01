@@ -1,28 +1,4 @@
-#include "communication.h"
-
-#include <err.h>
-#include <string.h>
-
-MYSQL *connect_to_db(struct info_connection* info)
-{
-    MYSQL *connection = mysql_init(0);
-    if (!connection)
-	errx(3, "Fail to initialise the connection struct");
-    
-    if (!mysql_real_connect(
-		connection,
-		info->host,
-		info->user,
-		info->password,
-		info->port,
-		info->default_database,
-		NULL,
-		0
-		))
-	errx(3, "Fail to connect to the data base %s", mysql_error(connection));
-
-    return connection;
-}
+#include "sql.h"
 
 MYSQL_STMT* prepare_statement(MYSQL *connection, char *query)
 {
@@ -44,18 +20,17 @@ void exec_statement(MYSQL_STMT *statement, size_t nb_param, ...)
 	for (size_t i = 0; i < nb_param; i++)
 	{
 		bind[i].buffer_type = MYSQL_TYPE_STRING;
-		bind[i].buffer = va_arg(parameters, char*);
+		bind[i].buffer = va_arg(args, char*);
 		bind[i].buffer_length = strlen(bind[i].buffer);
 	}
 	va_end(parameters);
 
 	if (mysql_stmt_bind_param(statement, bind))
-		errx(3, "Fail to bind the parameters");
+		errx(3, "Fail to bind the parameters %s", mysql_error(connection));
 
 	if (mysql_stmt_execute(statement))
-		errx(3, "Fail to execute the statement");
+		errx(3, "Fail to execute the statement %s", mysql_error(connection));
 	
 	mysql_stmt_close(statement);
 	free(bind);
 }
-

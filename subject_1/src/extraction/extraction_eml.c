@@ -6,13 +6,6 @@
 
 static struct extracted_data *extract_data_new(char *match, struct extracted_data *prev)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	struct extracted_data *extacted = xcalloc(1, sizeof(struct extracted_data));
-	return extracted;
-=======
-=======
->>>>>>> 3ad9f3f (tqt)
 	struct extracted_data *data = xcalloc(1, sizeof(struct extracted_data));
 	data->match = match;
 	if (prev)
@@ -61,10 +54,6 @@ struct extracted_data *extract_data(char *regex_str, char *data)
 
 	regfree(&regex);
 	return out;
-<<<<<<< HEAD
->>>>>>> 3ad9f3f (tqt)
-=======
->>>>>>> 3ad9f3f (tqt)
 }
 
 

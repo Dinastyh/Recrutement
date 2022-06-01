@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "database/info_connection.h"
+#include "database/communication.h"
 
 int main(int argc, char **argv)
 {
