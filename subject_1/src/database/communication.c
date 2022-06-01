@@ -53,7 +53,8 @@ void exec_statement(MYSQL_STMT *statement, size_t nb_param, ...)
 
 	if (mysql_stmt_execute(statement))
 		errx(3, "Fail to execute the statement %s", mysql_error(connection));
-
+	
+	mysql_stmt_close(statement);
 	free(bind);
 }
 

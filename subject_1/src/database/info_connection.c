@@ -1,8 +1,8 @@
 #include "info_connection.h"
 
-#include "xalloc.h"
-#include "stdio.h"
-#include "toml.h"
+#include "../utils/xalloc.h"
+#include <stdio.h>
+#include "../utils/toml.h"
 
 
 static void gen_default_conf(void);
@@ -110,3 +110,4 @@ static void gen_default_conf(void)
 	errx(2, "Fail to generate default config in config.toml\n");
     fclose(file);
 }
+

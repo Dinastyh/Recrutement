@@ -3,8 +3,11 @@
 
 struct extracted_data
 {
-    size_t size;
-    char **data;
-}
+	char *match;
+	struct extracted_data *next;
+};
+
+struct extracted_data *extract_data(char *regex, char *data);
+void free_extracted_data(struct extracted_data *data);
 
 #endif

@@ -1,3 +1,0 @@
-bin_src += files(
-)
-
